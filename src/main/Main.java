@@ -11,7 +11,10 @@ public class Main {
             System.out.println("Data files not found. Starting with empty inventory.");
         } catch (IOException e) {
             System.out.println("Error loading data: " + e.getMessage());
+        } catch (ClassNotFoundException e) {
+            System.out.println("Data format error: " + e.getMessage());
         }
+        
         
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
