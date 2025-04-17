@@ -1,15 +1,11 @@
-import java.io.Serializable;
 
 class GameDVD extends DVD {
-    private static final long serialVersionUID = 1L;
     
     private String platform;
     private int ageRating;
     
-    public GameDVD(int id, String title, double rentalPrice, String platform, int ageRating) {
+    public GameDVD(int id, String title, double rentalPrice) {
         super(id, title, rentalPrice);
-        this.platform = platform;
-        this.ageRating = ageRating;
     }
     
     public String getPlatform() {

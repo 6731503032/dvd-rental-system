@@ -1,0 +1,3 @@
+movie,1,The Matrix,2.5,true
+game,2,FIFA 21,3.0,false
+movie,3,Inception,2.75,true

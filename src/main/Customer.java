@@ -1,21 +1,17 @@
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-class Customer implements Serializable {
-    private static final long serialVersionUID = 1L;
+class Customer{
     
     private int id;
     private String name;
     private String phone;
-    private String address;
     private List<Integer> rentalHistory;
     
-    public Customer(int id, String name, String phone, String address) {
+    public Customer(int id, String name, String phone) {
         this.id = id;
         this.name = name;
         this.phone = phone;
-        this.address = address;
         this.rentalHistory = new ArrayList<>();
     }
     
@@ -30,10 +26,7 @@ class Customer implements Serializable {
     public String getPhone() {
         return phone;
     }
-    
-    public String getAddress() {
-        return address;
-    }
+
     
     public List<Integer> getRentalHistory() {
         return rentalHistory;
@@ -45,7 +38,7 @@ class Customer implements Serializable {
     
     @Override
     public String toString() {
-        return String.format("ID: %d | Name: %s | Phone: %s | Address: %s", 
-            id, name, phone, address);
+        return String.format("ID: %d | Name: %s | Phone: %s", 
+            id, name, phone);
     }
 }

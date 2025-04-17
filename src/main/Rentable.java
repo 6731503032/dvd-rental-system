@@ -1,5 +1,5 @@
 public interface Rentable {
-    void rent(int customerId, int days);
+    void rent(int days);
     double returnItem();
     boolean isRented();
 }

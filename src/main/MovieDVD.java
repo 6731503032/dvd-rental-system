@@ -1,15 +1,10 @@
-import java.io.Serializable;
-
 class MovieDVD extends DVD {
-    private static final long serialVersionUID = 1L;
     
     private String director;
     private String genre;
     
-    public MovieDVD(int id, String title, double rentalPrice, String director, String genre) {
+    public MovieDVD(int id, String title, double rentalPrice) {
         super(id, title, rentalPrice);
-        this.director = director;
-        this.genre = genre;
     }
     
     public String getDirector() {
