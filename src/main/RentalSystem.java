@@ -29,14 +29,13 @@ class RentalSystem {
             String line;
             boolean hasDVDs = false;
 
-            System.out.printf("%-5s %-25s %-10s %-12s %-10s\n", "ID", "Title", "Type", "Price", "Available");
+            System.out.printf("%-5s %-25s %-12s %-10s\n", "ID", "Title", "Price", "Available");
             System.out.println("--------------------------------------------------------------");
 
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
                 if (parts.length < 5) continue;
-
-                String type = parts[0];
+                
                 int id = Integer.parseInt(parts[1]);
                 String title = parts[2];
                 double price = Double.parseDouble(parts[3]);
