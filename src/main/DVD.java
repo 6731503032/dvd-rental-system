@@ -1,4 +1,4 @@
-import java.util.Date;
+
 
 abstract class DVD implements Rentable {
 
@@ -6,7 +6,6 @@ abstract class DVD implements Rentable {
     private String title;
     private double rentalPrice;
     private boolean isAvailable;
-    private Date rentDate;
     private int rentalDays;
 
     public DVD(int id, String title, double rentalPrice) {
@@ -14,7 +13,6 @@ abstract class DVD implements Rentable {
         this.title = title;
         this.rentalPrice = rentalPrice;
         this.isAvailable = true;
-        this.rentDate = null;
         this.rentalDays = 0;
     }
 
@@ -38,14 +36,6 @@ abstract class DVD implements Rentable {
         this.isAvailable = available;
     }
 
-    public Date getRentDate() {
-        return rentDate;
-    }
-
-    public void setRentDate(Date rentDate) {
-        this.rentDate = rentDate;
-    }
-
     public int getRentalDays() {
         return rentalDays;
     }
@@ -57,6 +47,7 @@ abstract class DVD implements Rentable {
     public double calculateRentalCost() {
         return rentalPrice * rentalDays;
     }
+    
 
     // Abstract method for polymorphism
     public abstract String getDVDType();
@@ -70,7 +61,6 @@ abstract class DVD implements Rentable {
     @Override
     public void rent(int days) {
         setAvailable(false);
-        setRentDate(new Date());
         setRentalDays(days);
     }
 
@@ -82,9 +72,7 @@ abstract class DVD implements Rentable {
 
         // No late fee calculation, just reset
         setAvailable(true);
-        setRentDate(null);
         setRentalDays(0);
-
         return 0.0;
     }
 

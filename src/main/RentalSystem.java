@@ -48,26 +48,26 @@ class RentalSystem {
             String line;
             boolean hasDVDs = false;
 
-            System.out.printf("%-5s %-25s %-12s %-10s\n", "ID", "Title", "Price", "Available");
-            System.out.println("--------------------------------------------------------------");
+            System.out.printf("%-10s %-5s %-25s %-12s %-10s\n", "Type", "ID", "Title", "Price", "Available");
+            System.out.println("--------------------------------------------------------------------------");
 
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
                 if (parts.length < 5) continue;
-
+                String type = parts[0];
                 int id = Integer.parseInt(parts[1]);
                 String title = parts[2];
                 double price = Double.parseDouble(parts[3]);
                 boolean isAvailable = Boolean.parseBoolean(parts[4]);
 
-                System.out.printf("%-5d %-25s %-11.2f %-10s\n",
-                        id,
-                        title,
-                        price,
-                        isAvailable ? "Yes" : "No"
-                );
-                hasDVDs = true;
-            }
+                System.out.printf("%-10s %-5d %-25s %-12.2f %-10s\n",
+                type,
+                id,
+                title,
+                price,
+                isAvailable ? "Yes" : "No");
+                    hasDVDs = true;
+                }
 
             if (!hasDVDs) {
                 System.out.println("No DVDs in inventory.");
@@ -106,6 +106,10 @@ class RentalSystem {
             }
         }
         return null;
+    }
+    public boolean isDVDAvailable(int dvdId) {
+        DVD dvd = findDVDById(dvdId);
+        return dvd != null && dvd.isAvailable();
     }
 
     public void loadData() throws IOException {

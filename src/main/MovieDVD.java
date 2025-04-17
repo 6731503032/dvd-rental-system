@@ -9,9 +9,4 @@ class MovieDVD extends DVD {
         return "Movie";
     }
     
-    
-    @Override
-    public String toString() {
-        return super.toString() + String.format(" | Type: Movie");
-    }
 }

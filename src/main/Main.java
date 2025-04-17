@@ -62,6 +62,10 @@ public class Main {
         rentalSystem.displayAllDVDs();
         System.out.print("Enter DVD ID to rent: ");
         int dvdId = Integer.parseInt(scanner.nextLine());
+        if (!rentalSystem.isDVDAvailable(dvdId)) {
+            System.out.println("Rental Error: DVD is currently not available for rent!");
+            return;
+        }
         System.out.print("Enter rental days: ");
         int days = Integer.parseInt(scanner.nextLine());
         rentalSystem.rentDVD(dvdId, days);

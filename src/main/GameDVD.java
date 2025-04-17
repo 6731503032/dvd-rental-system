@@ -9,9 +9,4 @@ class GameDVD extends DVD {
     public String getDVDType() {
         return "Game";
     }
-    
-    @Override
-    public String toString() {
-        return super.toString() + String.format(" | Type: Game");
-    }
 }
