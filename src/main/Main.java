@@ -10,7 +10,6 @@ public class Main {
         } catch (IOException e) {
             System.out.println("Could not load data: " + e.getMessage());
         }
-1
         Scanner scanner = new Scanner(System.in);
         boolean choosing = true;
 
