@@ -35,7 +35,7 @@ class RentalSystem {
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
                 if (parts.length < 5) continue;
-                
+
                 int id = Integer.parseInt(parts[1]);
                 String title = parts[2];
                 double price = Double.parseDouble(parts[3]);
@@ -49,6 +49,7 @@ class RentalSystem {
                 );
                 hasDVDs = true;
             }
+            
 
             if (!hasDVDs) {
                 System.out.println("No DVDs in inventory.");
