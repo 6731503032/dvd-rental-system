@@ -47,9 +47,8 @@ class RentalSystem {
                         price,
                         isAvailable ? "Yes" : "No"
                 );
-                hasDVDs = true;
+                hasDVDs = true;  
             }
-            
 
             if (!hasDVDs) {
                 System.out.println("No DVDs in inventory.");
