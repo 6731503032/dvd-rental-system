@@ -70,6 +70,5 @@ public class Main {
         int dvdId = Integer.parseInt(scanner.nextLine());
         double charges = rentalSystem.returnDVD(dvdId);
         System.out.println("DVD returned successfully!");
-        System.out.printf("Late charges (if any): $%.2f\n", charges);
     }
 }

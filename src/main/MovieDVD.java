@@ -9,11 +9,6 @@ class MovieDVD extends DVD {
         return "Movie";
     }
     
-    @Override
-    public double calculateLateFee(int daysLate) {
-        // Movies have a higher late fee - 2x the rental price
-        return daysLate * (getRentalPrice() * 2.0);
-    }
     
     @Override
     public String toString() {
