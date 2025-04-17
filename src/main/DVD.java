@@ -58,10 +58,6 @@ abstract class DVD implements Rentable {
         return rentalPrice * rentalDays;
     }
 
-    public double calculateLateFee(int daysLate) {
-        return daysLate * (rentalPrice * 1.5); // Default late fee is 1.5x the daily rental price
-    }
-
     // Abstract method for polymorphism
     public abstract String getDVDType();
 
@@ -81,19 +77,15 @@ abstract class DVD implements Rentable {
     @Override
     public double returnItem() {
         if (isAvailable()) {
-            return 0.0;
+            return -1.0;
         }
-        Date returnDate = new Date();
-        long diffInMillis = returnDate.getTime() - getRentDate().getTime();
-        int actualDays = (int) (diffInMillis / (1000 * 60 * 60 * 24)) + 1;
-        int daysLate = actualDays - getRentalDays();
-        double lateFee = daysLate > 0 ? calculateLateFee(daysLate) : 0.0;
 
+        // No late fee calculation, just reset
         setAvailable(true);
         setRentDate(null);
         setRentalDays(0);
 
-        return lateFee;
+        return 0.0;
     }
 
     @Override
@@ -101,3 +93,4 @@ abstract class DVD implements Rentable {
         return !isAvailable();
     }
 }
+

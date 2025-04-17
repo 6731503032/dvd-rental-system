@@ -19,7 +19,8 @@ public class Main {
             System.out.println("1. Display All DVDs");
             System.out.println("2. Rent DVD");
             System.out.println("3. Return DVD");
-            System.out.println("4. Save and Exit");
+            System.out.println("4. Add New DVD");
+            System.out.println("5. Save and Exit");
             System.out.print("Choose an option: ");
 
             try {
@@ -35,6 +36,9 @@ public class Main {
                         returnDVD(scanner, rentalSystem);
                         break;
                     case 4:
+                        addNewDVD(scanner, rentalSystem);
+                        break;
+                    case 5:
                         rentalSystem.saveData();
                         System.out.println("Data saved. Exiting...");
                         choosing = false;
@@ -50,6 +54,7 @@ public class Main {
                 System.out.println("Error saving data: " + e.getMessage());
             }
         }
+
         scanner.close();
     }
 
@@ -68,7 +73,47 @@ public class Main {
         System.out.println("\n-- Return DVD --");
         System.out.print("Enter DVD ID to return: ");
         int dvdId = Integer.parseInt(scanner.nextLine());
+        
+        // Check if DVD is actually rented and can be returned
         double charges = rentalSystem.returnDVD(dvdId);
-        System.out.println("DVD returned successfully!");
+        
+        if (charges == 0.0) {
+            System.out.println("DVD returned successfully!");
+        } else {
+            System.out.println("This DVD was not rented.");
+        }
+    }
+    
+
+    private static void addNewDVD(Scanner scanner, RentalSystem rentalSystem) {
+        System.out.println("\n-- Add New DVD --");
+
+        System.out.print("Enter DVD Type (movie/game): ");
+        String type = scanner.nextLine().toLowerCase();
+
+        if (!type.equals("movie") && !type.equals("game")) {
+            System.out.println("Invalid type. Only 'movie' or 'game' allowed.");
+            return;
+        }
+
+        System.out.print("Enter DVD Title: ");
+        String title = scanner.nextLine();
+
+        System.out.print("Enter Rental Price: ");
+        double price;
+        try {
+            price = Double.parseDouble(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid price input.");
+            return;
+        }
+
+        try {
+            rentalSystem.addDVD(type, title, price);
+            System.out.println("DVD added successfully!");
+        } catch (IOException e) {
+            System.out.println("Error adding DVD: " + e.getMessage());
+        }
     }
 }
+

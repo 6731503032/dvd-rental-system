@@ -4,22 +4,41 @@ import java.util.*;
 class RentalSystem {
     private List<DVD> dvdInventory;
     private static final String DVD_FILE = "src/main/dvd.txt";
+
     public RentalSystem() {
         dvdInventory = new ArrayList<>();
     }
 
     public int getNextDVDId() {
-        return dvdInventory.size() + 1;
+        int maxId = 0;
+        for (DVD dvd : dvdInventory) {
+            if (dvd.getId() > maxId) {
+                maxId = dvd.getId();
+            }
+        }
+        return maxId + 1;
     }
 
-    public void addDVD(DVD dvd) {
+    public void addDVD(String type, String title, double price) throws IOException {
+        int id = getNextDVDId();
+        DVD dvd;
+
+        if (type.equalsIgnoreCase("movie")) {
+            dvd = new MovieDVD(id, title, price);
+        } else if (type.equalsIgnoreCase("game")) {
+            dvd = new GameDVD(id, title, price);
+        } else {
+            throw new IllegalArgumentException("Unknown DVD type: " + type);
+        }
+
         dvdInventory.add(dvd);
+        saveData();
     }
 
     public void displayAllDVDs() {
         System.out.println("\n--- DVD INVENTORY ---");
 
-        File file = new File("src/main/dvd.txt");
+        File file = new File(DVD_FILE);
         if (!file.exists()) {
             System.out.println("No DVDs in inventory. File not found.");
             return;
@@ -47,7 +66,7 @@ class RentalSystem {
                         price,
                         isAvailable ? "Yes" : "No"
                 );
-                hasDVDs = true;  
+                hasDVDs = true;
             }
 
             if (!hasDVDs) {
@@ -136,6 +155,7 @@ class RentalSystem {
         }
     }
 }
+
 
 
 
