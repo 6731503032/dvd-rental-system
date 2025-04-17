@@ -3,8 +3,7 @@ import java.util.*;
 
 class RentalSystem {
     private List<DVD> dvdInventory;
-    private static final String DVD_FILE = "dvd.txt";
-
+    private static final String DVD_FILE = "src/main/dvd.txt";
     public RentalSystem() {
         dvdInventory = new ArrayList<>();
     }
@@ -20,7 +19,7 @@ class RentalSystem {
     public void displayAllDVDs() {
         System.out.println("\n--- DVD INVENTORY ---");
 
-        File file = new File(DVD_FILE);
+        File file = new File("src/main/dvd.txt");
         if (!file.exists()) {
             System.out.println("No DVDs in inventory. File not found.");
             return;

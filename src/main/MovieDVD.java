@@ -1,18 +1,7 @@
 class MovieDVD extends DVD {
     
-    private String director;
-    private String genre;
-    
     public MovieDVD(int id, String title, double rentalPrice) {
         super(id, title, rentalPrice);
-    }
-    
-    public String getDirector() {
-        return director;
-    }
-    
-    public String getGenre() {
-        return genre;
     }
     
     @Override
@@ -28,7 +17,6 @@ class MovieDVD extends DVD {
     
     @Override
     public String toString() {
-        return super.toString() + String.format(" | Type: Movie | Director: %s | Genre: %s", 
-            director, genre);
+        return super.toString() + String.format(" | Type: Movie");
     }
 }
