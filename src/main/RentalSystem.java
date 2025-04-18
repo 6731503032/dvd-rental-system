@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 
 class RentalSystem {
-    private List<DVD> dvdInventory;
+    private List<DVD> dvdInventory; //collection
     private static final String DVD_FILE = "src/main/dvd.txt";
 
 
