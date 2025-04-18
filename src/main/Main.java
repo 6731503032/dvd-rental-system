@@ -1,17 +1,10 @@
 import java.io.IOException;
 import java.util.Scanner;
 
-/**
- * Main class that provides a command-line interface for the DVD Rental System
- * Handles user interactions and delegates operations to the RentalSystem class
+/*
+  Handles user interactions and delegates operations to the RentalSystem class
  */
 public class Main {
-    /**
-     * Entry point of the application
-     * Sets up the rental system and processes user commands
-     * 
-     * @param args Command line arguments (not used)
-     */
     public static void main(String[] args) {
         // Initialize the rental system
         RentalSystem rentalSystem = new RentalSystem();
@@ -74,37 +67,25 @@ public class Main {
             }
         }
 
-        // Clean up resources
         scanner.close();
     }
 
-    /**
-     * Handles the DVD rental process
-     * Gets DVD ID and rental duration from user and processes the rental
-     * 
-     * @param scanner Scanner for user input
-     * @param rentalSystem Reference to the rental system
-     * @throws RentalException If the rental cannot be completed
-     */
     private static void rentDVD(Scanner scanner, RentalSystem rentalSystem) throws RentalException {
         System.out.println("\n-- Rent DVD --");
         rentalSystem.displayAllDVDs();  // Show available DVDs
         System.out.print("Enter DVD ID to rent: ");
         int dvdId = Integer.parseInt(scanner.nextLine());  // Get DVD ID
+        if (!rentalSystem.isDVDAvailable(dvdId)) {//check availability
+            System.out.println("Error: DVD with ID " + dvdId + " is not available.");
+            return;
+        }
         System.out.print("Enter rental days: ");
         int days = Integer.parseInt(scanner.nextLine());  // Get rental duration
         rentalSystem.rentDVD(dvdId, days);  // Process rental
         System.out.println("DVD rented successfully!");
     }
 
-    /**
-     * Handles the DVD return process
-     * Gets DVD ID from user and processes the return
-     * 
-     * @param scanner Scanner for user input
-     * @param rentalSystem Reference to the rental system
-     * @throws RentalException If the return cannot be completed
-     */
+
     private static void returnDVD(Scanner scanner, RentalSystem rentalSystem) throws RentalException {
         System.out.println("\n-- Return DVD --");
         System.out.print("Enter DVD ID to return: ");
@@ -120,13 +101,7 @@ public class Main {
         }
     }
     
-    /**
-     * Handles adding a new DVD to the inventory
-     * Gets DVD type, title, and price from user and adds to system
-     * 
-     * @param scanner Scanner for user input
-     * @param rentalSystem Reference to the rental system
-     */
+
     private static void addNewDVD(Scanner scanner, RentalSystem rentalSystem) {
         System.out.println("\n-- Add New DVD --");
 
